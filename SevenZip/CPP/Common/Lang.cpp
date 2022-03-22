@@ -87,7 +87,7 @@ bool CLang::OpenFromString(const AString &s2)
       id++;
       continue;
     }
-    
+
     text[pos++] = 0;
     const wchar_t *end;
     UInt32 id32 = ConvertStringToUInt32(text + start, &end);
@@ -120,7 +120,7 @@ bool CLang::Open(CFSTR fileName, const char *id)
     return false;
   if (length > (1 << 20))
     return false;
-  
+
   AString s;
   const unsigned len = (unsigned)length;
   char *p = s.GetBuf(len);
@@ -142,14 +142,14 @@ bool CLang::Open(CFSTR fileName, const char *id)
   }
   *p2 = 0;
   s.ReleaseBuf_SetLen((unsigned)(p2 - p));
-  
+
   if (OpenFromString(s))
   {
     const wchar_t *name = Get(0);
     if (name && StringsAreEqual_Ascii(name, id))
       return true;
   }
-  
+
   Clear();
   return false;
 }
