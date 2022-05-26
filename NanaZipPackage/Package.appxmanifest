@@ -119,8 +119,8 @@
             <desktop:ExecutionAlias Alias="7zFM.exe" uap8:AllowOverride="true"/>
           </uap3:AppExecutionAlias>
         </uap3:Extension>
-        <uap:Extension Category="windows.fileTypeAssociation">
-          <uap:FileTypeAssociation Name="fileassociations">
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation Name="fileassociations" Parameters="&quot;%1&quot;">
             <uap:Logo>Assets\ArchiveFile.png</uap:Logo>
             <uap:SupportedFileTypes>
               <uap:FileType>.001</uap:FileType>
@@ -167,11 +167,8 @@
               <uap:FileType>.zip</uap:FileType>
               <uap:FileType>.zst</uap:FileType>
             </uap:SupportedFileTypes>
-            <uap2:SupportedVerbs>
-              <uap3:Verb Id="open" Parameters="&quot;%1&quot;">ms-resource:///Legacy/Resource540</uap3:Verb>
-            </uap2:SupportedVerbs>
-          </uap:FileTypeAssociation>
-        </uap:Extension>
+          </uap3:FileTypeAssociation>
+        </uap3:Extension>
         <desktop4:Extension Category="windows.fileExplorerContextMenus">
           <desktop4:FileExplorerContextMenus>
             <desktop5:ItemType Type="Directory">
