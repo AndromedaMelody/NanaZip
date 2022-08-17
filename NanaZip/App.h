@@ -1,5 +1,14 @@
 ﻿#pragma once
+
+#include <winrt/Windows.ApplicationModel.Activation.h>
+
 #include "App.xaml.g.h"
+
+namespace winrt
+{
+    using Windows::ApplicationModel::Activation::LaunchActivatedEventArgs;
+    using Windows::ApplicationModel::Activation::ShareTargetActivatedEventArgs;
+}
 
 namespace winrt::NanaZip::implementation
 {
@@ -8,5 +17,7 @@ namespace winrt::NanaZip::implementation
     public:
         App();
         void Close();
+        void OnLaunched(winrt::LaunchActivatedEventArgs const& args);
+        void OnShareTargetActivated(winrt::ShareTargetActivatedEventArgs const& args);
     };
 }

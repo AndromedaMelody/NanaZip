@@ -196,6 +196,7 @@
             <uap:ShowOn Tile="square310x310Logo"/>
           </uap:ShowNameOnTiles>
         </uap:DefaultTile>
+        <uap:SplashScreen Image="Assets\Wide310x150Logo.png" />
       </uap:VisualElements>
       <Extensions>
         <uap3:Extension
@@ -266,6 +267,14 @@
               <uap10:FileType>*</uap10:FileType>
             </uap:SupportedFileTypes>
           </uap3:FileTypeAssociation>
+        </uap:Extension>
+        <uap:Extension Category="windows.shareTarget">
+          <uap:ShareTarget Description="ms-resource:///Legacy/Resource2329" uap10:DisplayName="ms-resource:///Legacy/Resource2329">
+            <uap:SupportedFileTypes>
+              <uap:SupportsAnyFileType />
+            </uap:SupportedFileTypes>
+            <uap:DataFormat>StorageItems</uap:DataFormat>
+          </uap:ShareTarget>
         </uap:Extension>
         <desktop4:Extension Category="windows.fileExplorerContextMenus">
           <desktop4:FileExplorerContextMenus>
