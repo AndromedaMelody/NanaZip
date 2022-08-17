@@ -36,6 +36,8 @@
 #include "RegistryUtils.h"
 #include "StringUtils.h"
 #include "ViewSettings.h"
+#include "../../../../../NanaZip/ShareTarget.h"
+#include <winrt/base.h>
 
 using namespace NWindows;
 using namespace NFile;
@@ -684,13 +686,26 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE /* hPrevInstance */,
       #ifdef _WIN32
       My_SetDefaultDllDirectories();
       #endif
-      return WinMain2(nCmdShow);
+
+      if (NanaZip::FileManager::ShareTarget::Handel())
+      {
+        return 0;
+      }
+      else
+      {
+        return WinMain2(nCmdShow);
+      }
     }
     catch (...)
     {
       g_ExitEventLauncher.Exit(true);
       throw;
     }
+  }
+  catch (const winrt::hresult_error& s)
+  {
+    ErrorMessage(s.message().c_str());
+    return 1;
   }
   catch(const CNewException &)
   {

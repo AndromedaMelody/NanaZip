@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\Mile.Project.Windows\Mile.Project.Platform.x86.props" />
   <Import Project="..\Mile.Project.Windows\Mile.Project.Platform.x64.props" />
@@ -193,6 +193,9 @@
     <ClCompile Include="..\SevenZip\CPP\7zip\UI\FileManager\VerCtrl.cpp" />
     <ClCompile Include="..\SevenZip\CPP\7zip\UI\FileManager\ViewSettings.cpp" />
     <ClCompile Include="AboutDialog.cpp" />
+    <ClCompile Include="ShareTarget.cpp">
+      <DependentUpon>ShareTarget.h</DependentUpon>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\SevenZip\CPP\7zip\Archive\Common\ItemNameUtils.h" />
@@ -369,6 +372,7 @@
     <ClInclude Include="..\SevenZip\CPP\7zip\UI\FileManager\ViewSettings.h" />
     <ClInclude Include="AboutDialog.h" />
     <ClInclude Include="Mile.Project.Properties.h" />
+    <ClInclude Include="ShareTarget.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\SevenZip\CPP\7zip\UI\FileManager\resource.rc" />
