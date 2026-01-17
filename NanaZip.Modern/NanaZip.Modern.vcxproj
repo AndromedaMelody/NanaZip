@@ -137,6 +137,7 @@
       <DependentUpon>ProgressPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
+    <ClInclude Include="ShutdownBlock.h" />
     <ClInclude Include="SponsorPage.h">
       <DependentUpon>SponsorPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -174,6 +175,9 @@
     <ClCompile Include="ProgressPage.cpp">
       <DependentUpon>ProgressPage.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </ClCompile>
+    <ClCompile Include="ShutdownBlock.cpp">
+      <DependentUpon>ShutdownBlock.h</DependentUpon>
     </ClCompile>
     <ClCompile Include="SponsorPage.cpp">
       <DependentUpon>SponsorPage.xaml</DependentUpon>
