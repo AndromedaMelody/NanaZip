@@ -280,6 +280,12 @@ the following command in the PowerShell which is run as administrator.
 
 > Get-AppxPackage -Name *40174MouriNaruto.NanaZip* -AllUsers | Remove-AppxPackage -AllUsers -Confirm
 
+If you want to edit group policy, you can execute the following command in the
+PowerShell which is run as administrator. Remeber don't edit other group
+policies due to Desktop Bridge registry virtualization.
+
+> Invoke-CommandInDesktopPackage -PackageFamilyName "40174MouriNaruto.NanaZip_gnj4mf6z9tkrc" -AppId "NanaZip.Modern" -PreventBreakaway -Command "$env:SystemRoot\System32\mmc.exe" -Args "$env:SystemRoot\System32\gpedit.msc"
+
 ## Known issues
 
 - If you can't find NanaZip in the context menu, please restart all File

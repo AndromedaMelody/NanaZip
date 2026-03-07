@@ -30,6 +30,11 @@
       <DeploymentContent>true</DeploymentContent>
       <Link>Assets\%(RecursiveDir)%(FileName)%(Extension)</Link>
     </Content>
+    <!-- Policy Assets -->
+    <Content Include="..\Documents\PolicyDefinitions\**\*">
+      <DeploymentContent>true</DeploymentContent>
+      <Link>VFS\Windows\PolicyDefinitions\%(RecursiveDir)%(FileName)%(Extension)</Link>
+    </Content>
     <!-- Internationalization Support -->
     <PRIResource Include="Strings\**\*">
       <Link>Strings\%(RecursiveDir)%(FileName)%(Extension)</Link>

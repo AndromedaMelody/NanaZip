@@ -37,6 +37,12 @@
         <virtualization:ExcludedDirectory>$(KnownFolder:RoamingAppData)</virtualization:ExcludedDirectory>
       </virtualization:ExcludedDirectories>
     </virtualization:FileSystemWriteVirtualization>
+    <virtualization:RegistryWriteVirtualization>
+      <virtualization:ExcludedKeys>
+        <!-- User Policy -->
+        <virtualization:ExcludedKey>HKEY_CURRENT_USER\Software\Policies\M2Team\NanaZip</virtualization:ExcludedKey>
+      </virtualization:ExcludedKeys>
+    </virtualization:RegistryWriteVirtualization>
     <uap16:UpdateWhileInUse>defer</uap16:UpdateWhileInUse>
     <uap17:UpdateWhileInUse>defer</uap17:UpdateWhileInUse>
   </Properties>
