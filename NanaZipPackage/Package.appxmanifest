@@ -3,20 +3,21 @@
 <Package
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
-  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
-  xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
-  xmlns:uap2="http://schemas.microsoft.com/appx/manifest/uap/windows10/2"
   xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"
+  xmlns:uap5="http://schemas.microsoft.com/appx/manifest/uap/windows10/5"
+  xmlns:uap8="http://schemas.microsoft.com/appx/manifest/uap/windows10/8"
+  xmlns:uap10="http://schemas.microsoft.com/appx/manifest/uap/windows10/10"
+  xmlns:uap16="http://schemas.microsoft.com/appx/manifest/uap/windows10/16"
+  xmlns:uap17="http://schemas.microsoft.com/appx/manifest/uap/windows10/17"
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
   xmlns:com="http://schemas.microsoft.com/appx/manifest/com/windows10"
+  xmlns:com2="http://schemas.microsoft.com/appx/manifest/com/windows10/2"
+  xmlns:com3="http://schemas.microsoft.com/appx/manifest/com/windows10/3"
   xmlns:desktop4="http://schemas.microsoft.com/appx/manifest/desktop/windows10/4"
   xmlns:desktop5="http://schemas.microsoft.com/appx/manifest/desktop/windows10/5"
   xmlns:desktop10="http://schemas.microsoft.com/appx/manifest/desktop/windows10/10"
-  xmlns:uap8="http://schemas.microsoft.com/appx/manifest/uap/windows10/8"
-  xmlns:uap10="http://schemas.microsoft.com/appx/manifest/uap/windows10/10"
   xmlns:virtualization="http://schemas.microsoft.com/appx/manifest/virtualization/windows10"
-  xmlns:uap16="http://schemas.microsoft.com/appx/manifest/uap/windows10/16"
-  xmlns:uap17="http://schemas.microsoft.com/appx/manifest/uap/windows10/17"
-  IgnorableNamespaces="uap rescap desktop uap2 uap3 com desktop4 desktop5 desktop10 uap8 uap10 virtualization uap16 uap17">
+  IgnorableNamespaces="uap16 uap17 desktop10 virtualization">
 
   <Identity
     Name="40174MouriNaruto.NanaZipPreview"
@@ -27,9 +28,6 @@
     <DisplayName>NanaZip Preview</DisplayName>
     <PublisherDisplayName>Kenji Mouri</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
-    <uap10:PackageIntegrity>
-      <uap10:Content Enforcement="on" />
-    </uap10:PackageIntegrity>
     <virtualization:FileSystemWriteVirtualization>
       <virtualization:ExcludedDirectories>
         <virtualization:ExcludedDirectory>$(KnownFolder:LocalAppData)</virtualization:ExcludedDirectory>
@@ -37,12 +35,18 @@
         <virtualization:ExcludedDirectory>$(KnownFolder:RoamingAppData)</virtualization:ExcludedDirectory>
       </virtualization:ExcludedDirectories>
     </virtualization:FileSystemWriteVirtualization>
+    <uap10:PackageIntegrity>
+      <uap10:Content Enforcement="on" />
+    </uap10:PackageIntegrity>
     <uap16:UpdateWhileInUse>defer</uap16:UpdateWhileInUse>
     <uap17:UpdateWhileInUse>defer</uap17:UpdateWhileInUse>
   </Properties>
 
   <Dependencies>
-    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.14393.0" MaxVersionTested="10.0.14393.0" />
+    <TargetDeviceFamily
+      Name="Windows.Desktop"
+      MinVersion="10.0.0.0"
+      MaxVersionTested="10.0.0.0" />
   </Dependencies>
 
   <Resources>
@@ -58,7 +62,8 @@
     <Application
       Id="NanaZip.Modern"
       Executable="NanaZip.Modern.FileManager.exe"
-      EntryPoint="Windows.FullTrustApplication">
+      uap10:TrustLevel="mediumIL"
+      uap10:RuntimeBehavior="packagedClassicApp">
       <uap:VisualElements
         DisplayName="NanaZip Preview"
         Description="NanaZip"
@@ -78,18 +83,17 @@
         </uap:DefaultTile>
       </uap:VisualElements>
       <Extensions>
-        <uap3:Extension
-            Category="windows.appExecutionAlias"
-            Executable="NanaZip.Modern.FileManager.exe"
-            EntryPoint="Windows.FullTrustApplication">
-          <uap3:AppExecutionAlias>
-            <desktop:ExecutionAlias Alias="NanaZip.exe" />
-            <desktop:ExecutionAlias Alias="K7.exe" />
-            <desktop:ExecutionAlias Alias="7zFM.exe" uap8:AllowOverride="true"/>
-          </uap3:AppExecutionAlias>
-        </uap3:Extension>
-        <uap:Extension Category="windows.fileTypeAssociation">
-          <uap3:FileTypeAssociation Name="fileassociations" Parameters="&quot;%1&quot; -open">
+        <uap5:Extension Category="windows.appExecutionAlias">
+          <uap5:AppExecutionAlias>
+            <uap8:ExecutionAlias Alias="NanaZip.exe" />
+            <uap8:ExecutionAlias Alias="K7.exe" />
+            <uap8:ExecutionAlias Alias="7zFM.exe" uap8:AllowOverride="true" />
+          </uap5:AppExecutionAlias>
+        </uap5:Extension>
+        <uap3:Extension Category="windows.fileTypeAssociation">
+          <uap3:FileTypeAssociation
+            Name="fileassociations"
+            Parameters="&quot;%1&quot; -open">
             <uap:Logo>Assets\ArchiveFile.png</uap:Logo>
             <uap:SupportedFileTypes>
               <uap:FileType>.001</uap:FileType>
@@ -157,37 +161,47 @@
               <uap10:FileType>*</uap10:FileType>
             </uap:SupportedFileTypes>
           </uap3:FileTypeAssociation>
-        </uap:Extension>
+        </uap3:Extension>
         <desktop4:Extension Category="windows.fileExplorerContextMenus">
           <desktop4:FileExplorerContextMenus>
             <!--
               Use a low name prefix to work around our shell menu not appearing in the classic context menu.
               (https://github.com/MediaArea/MediaInfo/pull/998)
             -->
-            <desktop4:ItemType Type="*">
-              <desktop4:Verb Id="0000NanaZipShellExtension" Clsid="469D94E9-6AF4-4395-B396-99B1308F8CE5" />
-            </desktop4:ItemType>
+            <desktop5:ItemType Type="*">
+              <desktop5:Verb
+                Id="0000NanaZipShellExtension"
+                Clsid="469D94E9-6AF4-4395-B396-99B1308F8CE5" />
+            </desktop5:ItemType>
             <desktop5:ItemType Type="Directory">
-              <desktop5:Verb Id="0000NanaZipShellExtension" Clsid="469D94E9-6AF4-4395-B396-99B1308F8CE5" />
+              <desktop5:Verb
+                Id="0000NanaZipShellExtension"
+                Clsid="469D94E9-6AF4-4395-B396-99B1308F8CE5" />
             </desktop5:ItemType>
             <desktop10:ItemType Type="Drive">
-              <desktop10:Verb Id="0000NanaZipShellExtension" Clsid="469D94E9-6AF4-4395-B396-99B1308F8CE5" />
+              <desktop10:Verb
+                Id="0000NanaZipShellExtension"
+                Clsid="469D94E9-6AF4-4395-B396-99B1308F8CE5" />
             </desktop10:ItemType>
           </desktop4:FileExplorerContextMenus>
         </desktop4:Extension>
-        <com:Extension Category="windows.comServer">
-          <com:ComServer>
-            <com:SurrogateServer DisplayName="NanaZip Shell Extension">
-              <com:Class Id="469D94E9-6AF4-4395-B396-99B1308F8CE5" Path="NanaZip.ShellExtension.dll" ThreadingModel="STA"/>
-            </com:SurrogateServer>
-          </com:ComServer>
-        </com:Extension>
+        <com2:Extension Category="windows.comServer">
+          <com2:ComServer>
+            <com3:SurrogateServer DisplayName="NanaZip Shell Extension">
+              <com:Class
+                Id="469D94E9-6AF4-4395-B396-99B1308F8CE5"
+                Path="NanaZip.ShellExtension.dll"
+                ThreadingModel="STA" />
+            </com3:SurrogateServer>
+          </com2:ComServer>
+        </com2:Extension>
       </Extensions>
     </Application>
     <Application
       Id="NanaZip.Console"
       Executable="NanaZip.Universal.Console.exe"
-      EntryPoint="Windows.FullTrustApplication">
+      uap10:TrustLevel="mediumIL"
+      uap10:RuntimeBehavior="packagedClassicApp">
       <uap:VisualElements
         AppListEntry="none"
         DisplayName="NanaZip Preview"
@@ -196,22 +210,20 @@
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png" />
       <Extensions>
-        <uap3:Extension
-          Category="windows.appExecutionAlias"
-          Executable="NanaZip.Universal.Console.exe"
-          EntryPoint="Windows.FullTrustApplication">
-          <uap3:AppExecutionAlias>
-            <desktop:ExecutionAlias Alias="NanaZipC.exe" />
-            <desktop:ExecutionAlias Alias="K7C.exe" />
-            <desktop:ExecutionAlias Alias="7z.exe" uap8:AllowOverride="true"/>
-          </uap3:AppExecutionAlias>
-        </uap3:Extension>
+        <uap5:Extension Category="windows.appExecutionAlias">
+          <uap5:AppExecutionAlias>
+            <uap8:ExecutionAlias Alias="NanaZipC.exe" />
+            <uap8:ExecutionAlias Alias="K7C.exe" />
+            <uap8:ExecutionAlias Alias="7z.exe" uap8:AllowOverride="true" />
+          </uap5:AppExecutionAlias>
+        </uap5:Extension>
       </Extensions>
     </Application>
     <Application
       Id="NanaZip.Windows"
       Executable="NanaZip.Universal.Windows.exe"
-      EntryPoint="Windows.FullTrustApplication">
+      uap10:TrustLevel="mediumIL"
+      uap10:RuntimeBehavior="packagedClassicApp">
       <uap:VisualElements
         AppListEntry="none"
         DisplayName="NanaZip Preview"
@@ -220,16 +232,13 @@
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png" />
       <Extensions>
-        <uap3:Extension
-          Category="windows.appExecutionAlias"
-          Executable="NanaZip.Universal.Windows.exe"
-          EntryPoint="Windows.FullTrustApplication">
-          <uap3:AppExecutionAlias>
-            <desktop:ExecutionAlias Alias="NanaZipG.exe" />
-            <desktop:ExecutionAlias Alias="K7G.exe" />
-            <desktop:ExecutionAlias Alias="7zG.exe" uap8:AllowOverride="true"/>
-          </uap3:AppExecutionAlias>
-        </uap3:Extension>
+        <uap5:Extension Category="windows.appExecutionAlias">
+          <uap5:AppExecutionAlias>
+            <uap8:ExecutionAlias Alias="NanaZipG.exe" />
+            <uap8:ExecutionAlias Alias="K7G.exe" />
+            <uap8:ExecutionAlias Alias="7zG.exe" uap8:AllowOverride="true" />
+          </uap5:AppExecutionAlias>
+        </uap5:Extension>
       </Extensions>
     </Application>
   </Applications>
