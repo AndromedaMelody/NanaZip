@@ -19,6 +19,8 @@
       <StaticResource x:Key="SettingsCardBorderBrushPointerOver" ResourceKey="ControlElevationBorderBrush" />
       <StaticResource x:Key="SettingsCardBorderBrushPressed" ResourceKey="ControlStrokeColorDefaultBrush" />
       <StaticResource x:Key="SettingsCardBorderBrushDisabled" ResourceKey="ControlStrokeColorDefaultBrush" />
+
+      <StaticResource x:Key="ExpanderChevronForeground" ResourceKey="TextFillColorPrimaryBrush" />
     </ResourceDictionary>
 
     <ResourceDictionary x:Key="Light">
@@ -37,6 +39,8 @@
       <StaticResource x:Key="SettingsCardBorderBrushPointerOver" ResourceKey="ControlElevationBorderBrush" />
       <StaticResource x:Key="SettingsCardBorderBrushPressed" ResourceKey="ControlStrokeColorDefaultBrush" />
       <StaticResource x:Key="SettingsCardBorderBrushDisabled" ResourceKey="ControlStrokeColorDefaultBrush" />
+
+      <StaticResource x:Key="ExpanderChevronForeground" ResourceKey="TextFillColorPrimaryBrush" />
     </ResourceDictionary>
 
     <ResourceDictionary x:Key="HighContrast">
@@ -55,6 +59,8 @@
       <StaticResource x:Key="SettingsCardBorderBrushPointerOver" ResourceKey="SystemColorHighlightColorBrush" />
       <StaticResource x:Key="SettingsCardBorderBrushPressed" ResourceKey="SystemColorHighlightTextColorBrush" />
       <StaticResource x:Key="SettingsCardBorderBrushDisabled" ResourceKey="SystemControlDisabledTransparentBrush" />
+
+      <StaticResource x:Key="ExpanderChevronForeground" ResourceKey="SystemColorButtonTextColorBrush" />
     </ResourceDictionary>
 
   </ResourceDictionary.ThemeDictionaries>
@@ -71,8 +77,13 @@
   <x:Double x:Key="SettingsCardMaxWidth">1000</x:Double>
   <x:Double x:Key="SettingsCardSpacing">4</x:Double>
 
+  <Thickness x:Key="SettingsExpanderHeaderPadding">24,24,72,24</Thickness>
   <Thickness x:Key="SettingsExpanderItemBorderThickness">0,1,0,0</Thickness>
   <Thickness x:Key="SettingsExpanderItemPadding">58,8,44,8</Thickness>
-  <x:Double x:Key="SettingsExpanderContentMinHeight">16</x:Double>
+  <x:Double x:Key="SettingsExpanderItemMinHeight">52</x:Double>
+  <Thickness x:Key="ClickableSettingsExpanderItemPadding">58,8,16,8</Thickness>
+  <x:String x:Key="ExpanderChevronUpGlyph">&#xE70E;</x:String>
+  <x:String x:Key="ExpanderChevronDownGlyph">&#xE70D;</x:String>
+  <x:Double x:Key="SettingsExpanderChevronFontSize">16</x:Double>
 
 </ResourceDictionary>

@@ -15,6 +15,7 @@
         <ResourceDictionary Source="ms-appx:///NanaZip.Modern/Styles/PivotTab.xaml" />
         <ResourceDictionary Source="ms-appx:///NanaZip.Modern/Styles/TextCard.xaml" />
         <ResourceDictionary Source="ms-appx:///NanaZip.Modern/Styles/ComboCard.xaml" />
+        <ResourceDictionary Source="ms-appx:///NanaZip.Modern/Styles/ListViewCard.xaml" />
       </ResourceDictionary.MergedDictionaries>
       <Style TargetType="TextBlock">
         <Setter Property="FontWeight" Value="SemiBold" />
@@ -34,6 +35,7 @@
       <Style TargetType="ToggleSwitch" BasedOn="{StaticResource ToggleSwitchCardStyle}" />
       <Style TargetType="AutoSuggestBox" BasedOn="{StaticResource AutoSuggestBoxCardStyle}" />
       <Style TargetType="ComboBox" BasedOn="{StaticResource ComboBoxCardStyle}" />
+      <Style TargetType="ListView" BasedOn="{StaticResource ListViewCardWithExpanderStyle}" />
     </Pivot.Resources>
 
     <!--
@@ -89,8 +91,13 @@
             Loading="ToggleSwitchLoading" />
           <ListView Name="ContextMenu" Tag="Options"
             Header="[Context menu items]"
+            Footer="[Older Windows only show 16 items at most.]"
             SelectionMode="Multiple"
             Loading="ContextMenuListViewLoading">
+            <ListView.Resources>
+              <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewItemCardStyle_MultipleSelectionMode}" />
+            </ListView.Resources>
+
             <ListViewItem Content="[Open]" IsSelected="True">
               <ListViewItem.Tag><x:Int32>5</x:Int32></ListViewItem.Tag>
             </ListViewItem>
