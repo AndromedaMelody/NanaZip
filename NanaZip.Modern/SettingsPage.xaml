@@ -91,7 +91,7 @@
             Loading="ToggleSwitchLoading" />
           <ListView Name="ContextMenu" Tag="Options"
             Header="[Context menu items]"
-            Footer="[Older Windows only show 16 items at most.]"
+            Footer="[Older Windows only show 12 items at most.]"
             SelectionMode="Multiple"
             Loading="ContextMenuListViewLoading">
             <ListView.Resources>
