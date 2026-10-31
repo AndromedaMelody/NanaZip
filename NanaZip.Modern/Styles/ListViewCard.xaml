@@ -11,7 +11,9 @@
     <Setter Property="BorderBrush" Value="{ThemeResource SettingsCardBorderBrush}" />
     <Setter Property="BorderThickness" Value="{StaticResource SettingsCardBorderThickness}" />
     <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
-    <!--
+
+    <!-- HeaderTemplate in ItemsPresenter only support pure text.
+         If want use control as header's content like Expander, please use ExpanderHeader.
     <Setter Property="HeaderTemplate">
       <Setter.Value>
         <DataTemplate>
@@ -24,7 +26,9 @@
       </Setter.Value>
     </Setter>
     -->
-    <!--
+
+    <!-- FooterTemplate in ItemsPresenter only support pure text.
+         If want use control as footer's content like Button, please use ExpanderFooter.
     <Setter Property="FooterTemplate">
       <Setter.Value>
         <DataTemplate>
@@ -40,12 +44,12 @@
       </Setter.Value>
     </Setter>
     -->
+
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="ListView">
           <StackPanel
             BorderBrush="{TemplateBinding BorderBrush}"
-            Background="{TemplateBinding Background}"
             BorderThickness="{TemplateBinding BorderThickness}"
             CornerRadius="{TemplateBinding CornerRadius}">
             <VisualStateManager.VisualStateGroups>
@@ -74,15 +78,16 @@
             </VisualStateManager.VisualStateGroups>
 
             <Grid x:Name="ExpanderHeader">
-              <ToggleButton
-                x:Name="ExpanderHeaderToggle"
+              <ToggleButton x:Name="ExpanderHeaderToggle"
                 Content="{TemplateBinding Header}"
                 ContentTemplate="{TemplateBinding HeaderTemplate}"
                 HorizontalAlignment="Stretch"
                 HorizontalContentAlignment="Left"
                 MinHeight="{StaticResource SettingsCardMinHeight}"
                 BorderThickness="0"
-                Padding="{StaticResource SettingsExpanderHeaderPadding}">
+                Padding="{StaticResource SettingsExpanderHeaderPadding}"
+                Background="{TemplateBinding Background}"
+                CornerRadius="0">
 
                 <ToggleButton.Resources>
                   <ResourceDictionary>
@@ -197,14 +202,25 @@
               IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
               BringIntoViewOnFocusChange="{TemplateBinding ScrollViewer.BringIntoViewOnFocusChange}"
               AutomationProperties.AccessibilityView="Raw"
+              Background="{TemplateBinding Background}"
               Visibility="Collapsed"
               x:Load="True">
               <ItemsPresenter Padding="{TemplateBinding Padding}" />
+              <!--
+              Header="{TemplateBinding Header}"
+              HeaderTemplate="{TemplateBinding HeaderTemplate}"
+              HeaderTransitions="{TemplateBinding HeaderTransitions}"
+              Footer="{TemplateBinding Footer}"
+              FooterTemplate="{TemplateBinding FooterTemplate}"
+              FooterTransitions="{TemplateBinding FooterTransitions}"
+              -->
             </ScrollViewer>
 
             <ContentPresenter x:Name="ExpanderFooter"
               Content="{TemplateBinding Footer}"
               ContentTemplate="{TemplateBinding FooterTemplate}"
+              Background="{TemplateBinding Background}"
+              BackgroundSizing="OuterBorderEdge"
               Padding="{StaticResource SettingsExpanderItemPadding}"
               BorderBrush="{ThemeResource SettingsCardBorderBrush}"
               BorderThickness="{StaticResource SettingsExpanderItemBorderThickness}"
